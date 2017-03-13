@@ -11,12 +11,39 @@
     }
     this.$element = $(selector);
     if (this.$element.length === 0) {
-      thow new Error('Could not find element with selector: ' + selector);
+      throw new Error('Could not find element with selector: ' + selector);
     }
   }
 
+  CheckList.prototype.addRow = function (coffeeOrder) {
+    // Create new instance of row using the coffee order info
+    var rowElement = new Row(coffeeOrder);
+    // Add the new row instance's $element property to the checkList
+    this.$element.append(rowElement.$element);
+  };
+
   function Row(coffeeOrder) {
-    // constructor code will go here
+    var $div = $('<div></div>', {
+      'data-coffee-order': 'checkbox', 'class': 'checkbox'
+    });
+    var $label = $('<label></label>');
+    var $checkbox = $('<input></input>', {
+      type: 'checkbox',
+      value: coffeeOrder.emailAddress
+    });
+    var description = coffeeOrder.size + ' ';
+    if (coffeeOrder.flavor) {
+      description += coffeeOrder.flavor + ' ';
+    }
+    description += coffeeOrder.coffee + ', ';
+    description += ' (' + coffeeOrder.emailAddress + ')';
+    description += ' [' + coffeeOrder.strength + 'x]';
+
+    $label.append($checkbox);
+    $label.append(description);
+    $div.append($label);
+
+    this.$element = $div;
   }
 
   App.CheckList = CheckList;
