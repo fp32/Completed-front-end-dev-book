@@ -13,7 +13,7 @@
     this.db.add(order.emailAddress, order);
   };
   Truck.prototype.deliverOrder = function (customerId) {
-    console.log('Deliverying order for ' + customerId);
+    console.log('Delivering order for ' + customerId);
     this.db.remove(customerId);
   };
   Truck.prototype.printOrders = function (customerId) {
