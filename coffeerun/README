@@ -1,3 +1,4 @@
 Order form for coffee shop using JavaScript modules, objects, and methods.
 Styling is done using Bootstrap.
 UI to server interaction handled with jQuery.
+Form validation with contraint validation API.
